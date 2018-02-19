@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_record"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.dilloncooper.top10downloader.MainActivity">
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/tvName"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="NBA LIVE Mobile Application" />
+
+    <TextView
+        android:id="@+id/tvArtist"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/tvArtist"
+        android:textAlignment="viewEnd"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        tools:text="Electric Arts Company" />
+
+    <TextView
+        android:id="@+id/tvSummary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/tvSummary"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas scelerisque efficitur condimentum. Ut semper, tellus id varius pulvinar, lacus lacus elementum sapien, at posuere sapien dui ac nunc. Quisque hendrerit nulla condimentum, hendrerit nisl at, tincidunt ipsum. Quisque egestas, diam eget vulputate lacinia, libero augue scelerisque enim, id auctor mi elit vitae turpis. Nunc pulvinar quam maximus aliquam molestie. Proin rhoncus eros non magna sodales, id varius metus faucibus. Ut facilisis, tortor et finibus tincidunt, ligula justo semper enim, vel laoreet orci lacus a justo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis massa libero, lacinia id venenatis sed, vestibulum nec ante. Donec facilisis tellus vitae nulla malesuada, ac tempor velit pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. In nec libero sagittis, pharetra ante eu, tincidunt orci. Morbi turpis sem, finibus sit amet mauris quis, varius euismod velit. Praesent semper arcu et tincidunt bibendum. Donec libero dolor, viverra sit amet ex in, tempus volutpat eros. Donec aliquam nec neque sed blandit.  Mauris vitae lectus rutrum, mattis justo sed, cursus neque. Nulla libero nisi, rhoncus at turpis ac, lacinia pulvinar eros. Nunc tincidunt sapien at ligula porttitor eleifend in sodales tellus. Etiam eleifend in nibh consequat fringilla. Suspendisse interdum justo id est ultricies imperdiet. Sed convallis, dui non vulputate lobortis, turpis enim posuere diam, sed iaculis lectus sem ac sem. Ut placerat imperdiet neque nec semper. Donec vestibulum consequat odio sagittis fermentum.  Fusce gravida consequat eros id congue. Nullam non odio eget enim dapibus dapibus a nec dolor. Mauris id euismod lacus. In volutpat elementum gravida. Nam ut varius diam. In sollicitudin vestibulum arcu. Curabitur id eros erat. Donec aliquam, velit eget hendrerit laoreet, purus tortor mollis dui, ac ultricies lacus nibh non massa.  Pellentesque non erat vitae ex imperdiet dictum in eget nulla. Proin purus elit, tincidunt at viverra vel, accumsan eu neque. Donec vitae odio scelerisque, auctor sem et, imperdiet magna. Nunc vel malesuada lacus. Sed convallis interdum turpis, quis dapibus augue faucibus sodales. Praesent auctor erat ut scelerisque malesuada. Aliquam vel erat et ex molestie ultrices. Fusce tincidunt eu justo ac ultrices. Aenean vitae diam nisl. Nunc mollis euismod accumsan. Quisque metus eros, accumsan in enim eu, pretium ullamcorper diam. Morbi ullamcorper magna sed ipsum condimentum hendrerit. Curabitur et posuere nisi, eget fermentum urna. Sed cursus dui vitae posuere consectetur. Pellentesque semper sapien at accumsan ornare." />
+
+</android.support.constraint.ConstraintLayout>

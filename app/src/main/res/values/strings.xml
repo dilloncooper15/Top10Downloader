@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Top 10 Downloader</string>
+    <string name="tvArtist">Electric Arts</string>
+    <string name="tvName">NBA LIVE Mobile</string>
+    <string name="tvSummary">TextView</string>
+</resources>
