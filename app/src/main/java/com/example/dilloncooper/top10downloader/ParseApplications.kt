@@ -47,6 +47,7 @@ class ParseApplications {
                                     currentRecord = FeedEntry()  // create a new object
                                 }
                                 //If the end tag is not "</entry>", but we are still within an entry, then perform the following for each corresponding tag.
+//                                "name" -> currentRecord.name = textValue
                                 "name" -> currentRecord.name = textValue
                                 "artist" -> currentRecord.artist = textValue
                                 "releasedate" -> currentRecord.releaseDate = textValue  // Has to be "releasedate" and not "releaseDate" since we are converting the tag names to lowercase in line 28

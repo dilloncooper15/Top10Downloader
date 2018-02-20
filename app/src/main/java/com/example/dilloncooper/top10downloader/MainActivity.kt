@@ -33,15 +33,14 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
 
     private val downloadData by lazy { DownloadData(this, xmlListView) }  // Have to add by lazy, since none of the widgets exist until after the call to setContentView in the onCreate Method.
-    // With a lazy function, initialization does not occur until the first time we need to use the DownloadData object.
+    // NOTE: With a lazy function, initialization does not occur until the first time we need to use the DownloadData object.
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         Log.d(TAG, "onCreate called")
-        val downloadData = DownloadData(this, xmlListView)
-        downloadData.execute("http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=25/xml")
+        downloadData.execute("http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=10/xml")
         Log.d(TAG, "onCreate: done")
     }
 
@@ -69,8 +68,13 @@ class MainActivity : AppCompatActivity() {
                 val parseApplications = ParseApplications()
                 parseApplications.parse(result)
 
-                val arrayAdapter = ArrayAdapter<FeedEntry>(propContext, R.layout.list_item, parseApplications.applications)
-                propListView.adapter = arrayAdapter
+//                Old Adapter:
+//                val arrayAdapter = ArrayAdapter<FeedEntry>(propContext, R.layout.list_item, parseApplications.applications)
+//                propListView.adapter = arrayAdapter
+
+//                New Adapter:
+                val feedAdapter = FeedAdapter(propContext, R.layout.list_record, parseApplications.applications) //parseApplications.applications = list of feed entry objects
+                propListView.adapter = feedAdapter
             }
 
             override fun doInBackground(vararg url: String?): String {
