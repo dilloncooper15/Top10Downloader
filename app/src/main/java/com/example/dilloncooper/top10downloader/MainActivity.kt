@@ -18,7 +18,7 @@ class FeedEntry {
     var summary : String = ""
     var imageURL : String = ""
 
-    override fun toString(): String {
+    override fun toString(): String {  // Override toString so the Recycler View does not display the full class name and hashcode of each instance of the FeedEntry class.
         return """
             name = $name
             artist = $artist
@@ -32,6 +32,9 @@ class FeedEntry {
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
 
+    private val downloadData by lazy { DownloadData(this, xmlListView) }  // Have to add by lazy, since none of the widgets exist until after the call to setContentView in the onCreate Method.
+    // With a lazy function, initialization does not occur until the first time we need to use the DownloadData object.
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,6 +43,11 @@ class MainActivity : AppCompatActivity() {
         val downloadData = DownloadData(this, xmlListView)
         downloadData.execute("http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=25/xml")
         Log.d(TAG, "onCreate: done")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        downloadData.cancel(true)
     }
 
     // Companion Object = Kotlin's version of a Java Static Class
