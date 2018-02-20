@@ -16,6 +16,8 @@ class ViewHolder(v: View) { //Created this class outside FeedAdapter Class, inst
     val tvArtists: TextView = v.findViewById(R.id.tvArtist)
     val tvSummary: TextView = v.findViewById(R.id.tvSummary)
 }
+
+
 class FeedAdapter(context: Context, private val resource: Int, private val applications: List<FeedEntry>): ArrayAdapter<FeedEntry>(context, resource) {  //Extending class
     private val inflater = LayoutInflater.from(context)
 
