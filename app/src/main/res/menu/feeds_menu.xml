@@ -11,4 +11,12 @@
     <item
         android:id="@+id/mnuSongs"
         android:title="Songs" />
+    <group
+        android:id="@+id/mnugrpLimit"
+        android:checkableBehavior="single">
+        <item
+            android:checked="true"
+            android:title="Top 10" />
+        <item android:title="Top 25" />
+    </group>
 </menu>
