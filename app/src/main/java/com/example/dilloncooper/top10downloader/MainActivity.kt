@@ -12,6 +12,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.net.URL
 import kotlin.properties.Delegates
 
+
+private const val STATE_FEEDLIMIT = ""
+private const val STATE_SAVEURL =
+
 class FeedEntry {
     var name : String = ""
     var artist : String = ""
@@ -37,11 +41,14 @@ class MainActivity : AppCompatActivity() {
     private var downloadData: DownloadData? = null  //Have to change downloadData to allow nulls since we will be referring to Async multiple times via the user selecting an option from the menu.
     // NOTE: With a lazy function, initialization does not occur until the first time we need to use the DownloadData object.
 
+    private var feedUrl: String = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=%d/xml"
+    private var feedLimit = 10  //default to Top 10
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        downloadUrl("http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=10/xml")
+        downloadUrl(feedUrl.format(feedLimit))  //Formats feedUrl to substitute the value specified for "feedLimit" into the url in "feedUrl" for the value of "%d"
         Log.d(TAG,"onCreate: done")
     }
 
@@ -54,24 +61,39 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {  //Gives us the ellipses within the menu and displays the three options depicted in feeds_menu.xml
         menuInflater.inflate(R.menu.feeds_menu, menu)
+
+        if (feedLimit == 10) {
+            menu?.findItem(R.id.mnu10)?.isChecked = true
+            menu?.findItem(R.id.mnu25)?.isChecked = true
+        }
+
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {  //After prompting the menu, decides where to go when the user selects one of the options from within the menu.
-        val feedUrl: String
 
         when (item.itemId) {  //If item was nullable (item: MenuItem?), we would use the null-safe operator here. However, we removed the null-safe operator since we know it will exist.
             R.id.mnuFree ->
-                    feedUrl = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=10/xml"
+                feedUrl = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=%d/xml"
             R.id.mnuPaid ->
-                    feedUrl = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/toppaidapplications/limit=10/xml"
+                feedUrl = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/toppaidapplications/limit=%d/xml"
             R.id.mnuSongs ->
-                    feedUrl = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topsongs/limit=10/xml"
+                feedUrl = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topsongs/limit=%d/xml"
+            R.id.mnu10, R.id.mnu25 -> {
+                if (!item.isChecked) { //If item is not currently checked
+                    item.isChecked = true  //Set isChecked to now true
+                    feedLimit = 35 - feedLimit  //Subtract the current value from the sum of the options (To toggle between the two options). Subtract the sum from the last feedLimit value.
+                    Log.d(TAG, "onOptionsItemSelected: ${item.title} setting feedLimit to $feedLimit")
+                } else {
+                    Log.d(TAG, "onOptionsItemSelected: ${item.title} setting feedLimit unchanged")
+                    return false
+                }
+            }
             else ->
-                    return super.onOptionsItemSelected(item)
+                return super.onOptionsItemSelected(item)
         }
 
-        downloadUrl(feedUrl)
+        downloadUrl(feedUrl.format(feedLimit))
         return true
     }
 
@@ -115,5 +137,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        var saveUrlLimit = outState.putInt(feedUrl, feedLimit)
+//        cacheDir.
+    }
 
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+    }
 }

@@ -3,4 +3,9 @@
     <string name="tvArtist">Electric Arts</string>
     <string name="tvName">NBA LIVE Mobile</string>
     <string name="tvSummary">TextView</string>
+    <string name="free_apps">Free apps</string>
+    <string name="paid_apps">Paid apps</string>
+    <string name="top_10">Top 10</string>
+    <string name="songs">Songs</string>
+    <string name="top_25">Top 25</string>
 </resources>
