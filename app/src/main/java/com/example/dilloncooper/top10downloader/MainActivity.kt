@@ -12,6 +12,7 @@ import android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK
 import android.view.accessibility.AccessibilityNodeInfo.ACTION_LONG_CLICK
 import android.widget.ListView
 import com.example.dilloncooper.top10downloader.R.id.*
+import com.example.dilloncooper.top10downloader.R.string.app_name
 import kotlinx.android.synthetic.main.activity_main.*
 import java.net.URL
 import kotlin.properties.Delegates
@@ -109,6 +110,7 @@ class MainActivity : AppCompatActivity() {
                     item.isChecked = true  //Set isChecked to now true
                     feedLimit = 35 - feedLimit  //Subtract the current value from the sum of the options (To toggle between the two options). Subtract the sum from the last feedLimit value.
                     Log.d(TAG, "onOptionsItemSelected: ${item.title} setting feedLimit to $feedLimit")
+                    app_name
                 } else {
                     Log.d(TAG, "onOptionsItemSelected: ${item.title} setting feedLimit unchanged")
                     return false
